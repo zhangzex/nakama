@@ -73,14 +73,17 @@ option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
  */
 service Console {
   // Authenticate a console user with username and password.
-  rpc Authenticate (AuthenticateRequest) returns (ConsoleSession) {
+  rpc Authenticate (google.protobuf.Empty) returns (ConsoleSession) {
     option (google.api.http) = {
       post: "/v2/console/authenticate",
       body: "*"
     };
     option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
       security: {
-        security_requirement: {};
+        security_requirement: {          
+          key: "BasicAuth";
+          value: {};
+        };
       };
     };
   }
@@ -285,14 +288,6 @@ message AccountExport {
 message AccountId {
   // The unique identifier of the user account.
   string id = 1;
-}
-
-// Authenticate a console user with username and password.
-message AuthenticateRequest {
-  // The username of the user.
-  string username = 1;
-  // The password of the user.
-  string password = 2;
 }
 
 // The current server configuration and any associated warnings.
