@@ -725,7 +725,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/consoleAuthenticateRequest"
+              "properties": {}
             }
           }
         ],
@@ -734,7 +734,7 @@
         ],
         "security": [
           {
-            "": []
+            "BasicAuth": []
           }
         ]
       }
@@ -1285,6 +1285,11 @@
           "type": "integer",
           "format": "int32",
           "description": "The friend status."
+        },
+        "update_time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Time of the latest relationship update."
         }
       },
       "description": "A friend of a user."
@@ -1686,20 +1691,6 @@
       },
       "description": "An export of all information stored for a user account."
     },
-    "consoleAuthenticateRequest": {
-      "type": "object",
-      "properties": {
-        "username": {
-          "type": "string",
-          "description": "The username of the user."
-        },
-        "password": {
-          "type": "string",
-          "description": "The password of the user."
-        }
-      },
-      "description": "Authenticate a console user with username and password."
-    },
     "consoleConfig": {
       "type": "object",
       "properties": {
@@ -1905,6 +1896,11 @@
           "type": "string",
           "format": "date-time",
           "description": "The UNIX time when the user's email was verified."
+        },
+        "disable_time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The UNIX time when the user's account was disabled/banned."
         }
       },
       "description": "A user with additional account details. Always the current user."
